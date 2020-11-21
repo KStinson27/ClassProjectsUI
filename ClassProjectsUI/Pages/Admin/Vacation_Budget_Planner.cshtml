@@ -1,0 +1,60 @@
+﻿@page
+@model ClassProjectsUI.Pages.Admin.Vacation_Budget_PlannerModel
+@{
+}
+
+<form method="post" class="form-horizontal">
+    <div class="form-group">
+
+        <label for="Name" class="control-label col-sm-3">Name</label>
+        <div class="col-sm-8">
+            <input type="text" asp-for="Name" class="form-control" />
+        </div>
+
+        <label for="TravelLocation" class="control-label col-sm-3">Location</label>
+        <div class="col-sm-8">
+            <select name="travelLocation" class="form-control">
+                <option value="">Select Location</option>
+                <option value="Colombia">Colombia</option>
+                <option value="Portugal">Portugal</option>
+            </select>
+        </div>
+
+        <label for="TripLength" class="control-label col-sm-3">Trip Length(Days)</label>
+        <div class="col-sm-8">
+            <input type="text" asp-for="TripLength" class="form-control" />
+        </div>
+
+        <label for="SpendingMoney" class="control-label col-sm-3">Amount of Money</label>
+        <div class="col-sm-8">
+            <input type="text" asp-for="SpendingMoney" class="form-control" />
+
+        </div>
+
+        <div class="col-sm-offset-2 col-sm-8">
+            <button type="submit" value="Submit" class="btn btn-primary">Submit</button>
+        </div>
+
+    </div>
+    @{
+        switch (Model.TravelLocation)
+        {
+            case "Colombia":
+                <div>@Model.Name, You have chosen @Model.TravelLocation.</div>
+                <div>Your total trip length is @Model.TripLength days, @Model.hours hours, and @Model.minutes minutes.</div>
+                <div>Your total spending amount is $ @Model.SpendingMoney which is $ @Model.perDiem or @Model.perDiemConversion per day.</div>
+
+                break;
+
+            case "Portugal":
+                <div>@Model.Name, You have chosen @Model.TravelLocation.</div>
+                <div>Your total trip length is @Model.TripLength days, @Model.hours hours, and @Model.minutes minutes.</div>
+                <div>Your total spending amount is $ @Model.SpendingMoney which is $ @Model.perDiem or @Model.perDiemConversion per day.</div>
+                break;
+
+            default:
+
+                break;
+        }
+    }
+</form>
