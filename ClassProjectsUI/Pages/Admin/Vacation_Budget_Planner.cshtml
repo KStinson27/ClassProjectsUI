@@ -1,60 +1,115 @@
-﻿@page
+﻿
+
+@page
 @model ClassProjectsUI.Pages.Admin.Vacation_Budget_PlannerModel
-@{
+@section Styles{
+    <link rel="stylesheet" href="~/css/VBC.css" />
+
 }
 
-<form method="post" class="form-horizontal">
-    <div class="form-group">
 
-        <label for="Name" class="control-label col-sm-3">Name</label>
-        <div class="col-sm-8">
-            <input type="text" asp-for="Name" class="form-control" />
+    <div id="formstuff">
+
+        <form method="post" class="form-horizontal shadow rounded" id="VBCForm">
+            <div class="form-group" id="VBCForm1">
+
+                <div id="formlabel" class="header jumbotron jumbotron-fluid">
+                    <div class="container">
+
+                        <svg width="40px" height="40px" viewBox="0 0 16 16" class="bi bi-cash-stack" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14 3H1a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1h-1z" />
+                            <path fill-rule="evenodd" d="M15 5H1v8h14V5zM1 4a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H1z" />
+                            <path d="M13 5a2 2 0 0 0 2 2V5h-2zM3 5a2 2 0 0 1-2 2V5h2zm10 8a2 2 0 0 1 2-2v2h-2zM3 13a2 2 0 0 0-2-2v2h2zm7-4a2 2 0 1 1-4 0 2 2 0 0 1 4 0z" />
+                        </svg>
+
+                        <h5 class="formheader">Find Your Vacation Budget</h5>
+                        <p class="description">Complete the information below to find your recommended daily spending.</p>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <label for="Name" class="control-label col-sm-4">Name</label>
+                    <div class="col-md-12">
+                        <input type="text" asp-for="Name" class="form-control" />
+                    </div>
+
+                    <label for="TravelLocation" class="control-label col-sm-4">Location</label>
+                    <div class="col-md-12">
+                        <select name="travelLocation" class="form-control">
+                            <option value="">Select Location</option>
+                            <option value="Colombia">Colombia</option>
+                            <option value="Portugal">Portugal</option>
+                        </select>
+                    </div>
+
+                    <label for="TripLength" class="control-label col-sm-4">Trip Length(Days)</label>
+                    <div class="col-md-12">
+                        <input type="text" asp-for="TripLength" class="form-control" />
+                    </div>
+
+                    <label for="SpendingMoney" class="control-label col-sm-4">Amount of Money</label>
+                    <div class="col-md-12">
+                        <input type="text" asp-for="SpendingMoney" class="form-control" />
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+
+                <button type="submit" id="submit" value="Submit" class="btn btn-primary btn-block" data-toggle="modal">Submit</button>
+            </div>
+        </form>
+    </div>
+
+
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">@Model.Name's Vacation Plan</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class=" ">
+
+                        <div>Destination: @Model.TravelLocation.</div>
+                        <div>Trip length: @Model.TripLength days, @Model.hours hours, and @Model.minutes minutes.</div>
+                        <div>Total spending amount:$ @Model.SpendingMoney</div>
+                        <div>Per Diem (US): $ @Model.perDiem  </div>
+                        <div>Per Diem (@Model.TravelLocation):@Model.perDiemConversion </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
 
-        <label for="TravelLocation" class="control-label col-sm-3">Location</label>
-        <div class="col-sm-8">
-            <select name="travelLocation" class="form-control">
-                <option value="">Select Location</option>
-                <option value="Colombia">Colombia</option>
-                <option value="Portugal">Portugal</option>
-            </select>
-        </div>
+    <div class="c-code">
+        @{
 
-        <label for="TripLength" class="control-label col-sm-3">Trip Length(Days)</label>
-        <div class="col-sm-8">
-            <input type="text" asp-for="TripLength" class="form-control" />
-        </div>
+            switch (Model.TravelLocation)
+            {
 
-        <label for="SpendingMoney" class="control-label col-sm-3">Amount of Money</label>
-        <div class="col-sm-8">
-            <input type="text" asp-for="SpendingMoney" class="form-control" />
+                case "Colombia":
 
-        </div>
+                    <a href="#myModal" type="submit" value="submit" role="button" class="btn btn-lg btn-primary displayplan" data-toggle="modal">Display Plan</a>
 
-        <div class="col-sm-offset-2 col-sm-8">
-            <button type="submit" value="Submit" class="btn btn-primary">Submit</button>
-        </div>
 
-    </div >
-    @{
-        switch (Model.TravelLocation)
-        {
-            case "Colombia":
-                <div>@Model.Name, You have chosen @Model.TravelLocation.</div>
-                <div>Your total trip length is @Model.TripLength days, @Model.hours hours, and @Model.minutes minutes.</div>
-                <div>Your total spending amount is $ @Model.SpendingMoney which is $ @Model.perDiem USD or @Model.perDiemConversion Pesos per day.</div>
+                    break;
+                case "Portugal":
 
-                break;
+                    <a href="#myModal" type="submit" value="submit" role="button" class="btn btn-lg btn-primary displayplan" data-toggle="modal">Display Plan</a>
 
-            case "Portugal":
-                <div>@Model.Name, You have chosen @Model.TravelLocation.</div>
-                <div>Your total trip length is @Model.TripLength days, @Model.hours hours, and @Model.minutes minutes.</div>
-                <div>Your total spending amount is $ @Model.SpendingMoney which is $ @Model.perDiem or @Model.perDiemConversion per day.</div>
-                break;
+                    break;
 
-            default:
+                default:
 
-                break;
+                    break;
+            }
         }
-    }
-</form>
+    </div>
+
+

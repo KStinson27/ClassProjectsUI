@@ -18,7 +18,7 @@ namespace ClassProjectsUI.Pages.Admin
     [Authorize]
     public class Vacation_Budget_PlannerModel : PageModel
     {
- 
+
 
         [BindProperty]
         public string Name { get; set; }
@@ -31,6 +31,7 @@ namespace ClassProjectsUI.Pages.Admin
 
         public string money;
         public double perDiem;
+        
         public decimal euroRate = OnGet(1);
         public decimal colRate = OnGet(2);
         public string perDiemConversion;
@@ -42,42 +43,46 @@ namespace ClassProjectsUI.Pages.Admin
         CultureInfo eu = new CultureInfo("fr-FR");
         CultureInfo co = new CultureInfo("es-CO");
 
-       public static decimal OnGet(int a)
-        {
-            var webRequest = WebRequest.Create("https://api.currencyfreaks.com/latest?apikey=b18b2da76e9a4749b187a39c606468df&symbols=EUR,USD,COP") as HttpWebRequest;
 
-            webRequest.ContentType = "application/json";
 
-            using (var s = webRequest.GetResponse().GetResponseStream())
-            {
-                using (var sr = new StreamReader(s))
-                {
-                    string currencyRatesAsJson = sr.ReadToEnd();
+        public static decimal OnGet(int a)
+          {
+              var webRequest = WebRequest.Create("https://api.currencyfreaks.com/latest?apikey=b18b2da76e9a4749b187a39c606468df&symbols=EUR,USD,COP") as HttpWebRequest;
 
-                    JObject currencyRates = JObject.Parse(currencyRatesAsJson);
+              webRequest.ContentType = "application/json";
 
-                    decimal eurConversionRate = (decimal)currencyRates["rates"]["EUR"];
-                    decimal copConversionRate = (decimal)currencyRates["rates"]["COP"];
+              using (var s = webRequest.GetResponse().GetResponseStream())
+              {
+                  using (var sr = new StreamReader(s))
+                  {
+                      string currencyRatesAsJson = sr.ReadToEnd();
 
-                    //Console.WriteLine(currencyRates); //- test print of json
-                    //Console.WriteLine(eurConversionRate); //- test print of euro rate
-                    //Console.WriteLine(copConversionRate); //-test print of cop rate
+                      JObject currencyRates = JObject.Parse(currencyRatesAsJson);
 
-                    if (a == 1)
-                    {
-                        return eurConversionRate;
-                    }
-                    else
-                    {
-                        return copConversionRate;
-                    }
+                      decimal eurConversionRate = (decimal)currencyRates["rates"]["EUR"];
+                      decimal copConversionRate = (decimal)currencyRates["rates"]["COP"];
 
-                }
+                      //Console.WriteLine(currencyRates); //- test print of json
+                      //Console.WriteLine(eurConversionRate); //- test print of euro rate
+                      //Console.WriteLine(copConversionRate); //-test print of cop rate
 
-            }
-        }
+                      if (a == 1)
+                      {
+                          return eurConversionRate;
+                      }
+                      else
+                      {
+                          return copConversionRate;
+                      }
 
-      public void OnPost()
+                  }
+
+              }
+          }
+
+        
+       
+        public void OnPost()
         {
             money = SpendingMoney.ToString("C2");
 
@@ -91,6 +96,7 @@ namespace ClassProjectsUI.Pages.Admin
                 inCountryRate = (double)(SpendingMoney * colRate) / TripLength;
 
                 perDiemConversion = inCountryRate.ToString("c", co);
+
             }
 
             else if (TravelLocation == "Portugal")
@@ -107,7 +113,10 @@ namespace ClassProjectsUI.Pages.Admin
                 inCountryRate = 0;
                 perDiemConversion = null;
             }
+
         }
-        
+
     }
 }
+
+

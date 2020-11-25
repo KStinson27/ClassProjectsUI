@@ -45,7 +45,7 @@ namespace ClassProjectsUI.Pages
                     };
                     var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
-                    return RedirectToPage("/admin/index");
+                    return RedirectToPage("/admin/Vacation_Budget_Planner");
                 }
             }
             Message = "Invalid attempt";

@@ -4,8 +4,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - ClassProjectsUI</title>
+    @RenderSection("Styles", false)
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    @*<link rel="stylesheet" href="~/css/site.css" />*@
 </head>
 <body>
     <header>
@@ -27,9 +28,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Admin/Vacation_Budget_Planner">Budget Planner</a>
                         </li>
-                        <li class="nav-item">
+                        @*<li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Admin/Calculators">Calculators</a>
-                        </li>
+                        </li>*@
                     </ul>
                 </div>
             </div>
@@ -41,9 +42,9 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="footer text-muted">
         <div class="container">
-            &copy; 2020 - ClassProjectsUI - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            &copy; 2020 - ClassProjectsUI 
         </div>
     </footer>
 

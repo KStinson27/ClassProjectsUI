@@ -3,26 +3,38 @@
 @{
     ViewData["Title"] = "Home page";
 }
+@section Styles{
+    <link rel="stylesheet" href="~/css/login.css" />
 
-<section id="main">
-    <h1>Welcome to Krystal's Class Assignments</h1>
-    <p> Please Login to get started!</p>
-</section>
+}
 
-<form method="post">
-    <div class="form-group">
-        <label asp-for="UserName" class="col-form-label col-md-2"></label>
-        <div class="col-md-10">
-            <input asp-for="UserName" />
-        </div>
+<div id="login">
+
+    
+    <div class="loginsection">
+        <form method="post" class="loginform shadow">
+
+            <div id="formlabel" class="title jumbotron jumbotron-fluid">
+                <h5 class="formheader">LOG IN</h5>
+            </div>
+            <div class="forminputs col-md-12">
+                <div class="form-group">
+                    <label asp-for="UserName" class="col-form-label col-md-2"></label>
+                    <div class="col-md-12">
+                        <input type="text" asp-for="UserName" placeholder="username" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password" class="col-form-label col-md-2"></label>
+                    <div class="col-md-12">
+                        <input type="password" asp-for="Password" placeholder="password" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="btt col-md-12">
+                <button type="submit" class="btn btn-primary btn-md">Log in</button>
+            </div>
+        </form>
     </div>
-    <div class="form-group">
-        <label asp-for="Password" class="col-form-label col-md-2"></label>
-        <div class="col-md-10">
-            <input asp-for="Password" />
-        </div>
-    </div>
-    <div class="form-group">
-        <button class="btn btn-outline-primary btn-sm">Log in</button>
-    </div>
-</form>
+
+</div>
