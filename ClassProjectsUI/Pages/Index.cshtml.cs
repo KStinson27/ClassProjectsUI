@@ -30,11 +30,13 @@ namespace ClassProjectsUI.Pages
         [BindProperty, DataType(DataType.Password)]
         public string Password { get; set; }
         public string Message { get; set; }
+        public bool valid;
+
         public async Task<IActionResult> OnPost()
         {
             var user = configuration.GetSection("SiteUser").Get<SiteUser>();
 
-            if (UserName == user.UserName)
+            if (UserName.ToLower() == user.UserName)
             {
                 var passwordHasher = new PasswordHasher<string>();
                 if (passwordHasher.VerifyHashedPassword(null,user.Password, Password) == PasswordVerificationResult.Success)
@@ -45,11 +47,19 @@ namespace ClassProjectsUI.Pages
                     };
                     var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
+                    valid = true;
                     return RedirectToPage("/admin/Vacation_Budget_Planner");
                 }
+                else
+                {
+                    valid = false;
+                    Message = "Invalid attempt";
+                    
             }
-            Message = "Invalid attempt";
+            }
+
             return Page();
+
         }
     }
 }
