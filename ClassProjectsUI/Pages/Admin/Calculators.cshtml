@@ -1,85 +1,90 @@
 ﻿@page
 @model ClassProjectsUI.Pages.Admin.CalculatorsModel
 
+@section Styles{
+    <link rel="stylesheet" href="~/css/site.css" />
+
+}
+
 @Model.Message
 
-@*{ 
-<form method="get"?> 
-    <label class="control-label col-sm-3">Calculators</label>
-    <div class="col-sm-8">
-        <select asp-for="Selection" asp-items="Model.Calculators">
-            <option value=""> Select a Calculator</option>
-        </select>
-    </div>
-    
-    <div class="col-sm-offset-2 col-sm-8">
-        <button type="submit" value="Submit" class="btn btn-primary" asp-page-handler="RequestInfo">Submit</button>
-    </div>
-</form>
-    
-    }
-@{
-
-    switch (Model.Selection)
-    {
-        case 1:
-            do
-            {
-    <form method="post">
-        <div id="DegreeCalc" runat="server" visibility="<%# IsDegreeCalcVisible %>">
-
-            <label for="DegreeCalc" class="control-label col-sm-3">Degree Conversion</label>
-
-            <label for="Fahrenheit" class="control-label col-sm-3">Enter a temperature(Farenheit)</label>
-            <div class="col-sm-8">
-                <input type="text" asp-for="Fahrenheit" class="form-control" />
-            </div>
-
+@*{
+    <form method="get"?>
+        <label class="control-label col-sm-3">Calculators</label>
+        <div class="col-sm-8">
+            <select asp-for="Selection" asp-items="Model.Calculators">
+                <option value=""> Select a Calculator</option>
+            </select>
         </div>
+
         <div class="col-sm-offset-2 col-sm-8">
-            <button type="submit" value="Submit" class="btn btn-primary">Submit</button>
+            <button type="submit" value="Submit" class="btn btn-primary" asp-page-handler="RequestInfo">Submit</button>
         </div>
-        <div> @Model.Fahrenheit degrees Fahrenheit is @Model.celsius in Celsuis.</div>
     </form>
-    } while (Model.IsDegreeCalcVisible == true);
 
-            
-    break;
+        }
+    @{
 
-case 2:
+        switch (Model.Selection)
+        {
+            case 1:
+                do
+                {
+        <form method="post">
+            <div id="DegreeCalc" runat="server" visibility="<%# IsDegreeCalcVisible %>">
 
-<div id="TaxCalc" runat="server" visibility="<%# IsTaxCalcVisible %>"/>
-    <form method="post"> Tax Calculator</form>
+                <label for="DegreeCalc" class="control-label col-sm-3">Degree Conversion</label>
 
-    <div class="col-sm-8">
-        <select name="FormSelection" class="form-control">
-            <option value="">Select Calculator</option>
-            <option value="Degrees">Temperature Conversion</option>
-            <option value="Tax">Sales Tax</option>
-            <option value="Tip">Tip</option>
-            <option value="BillSplit">Group Bill Split</option>
-        </select>
-    </div>
-    break;
+                <label for="Fahrenheit" class="control-label col-sm-3">Enter a temperature(Farenheit)</label>
+                <div class="col-sm-8">
+                    <input type="text" asp-for="Fahrenheit" class="form-control" />
+                </div>
 
-    case 3:
-    <div id="TipCalc" runat="server" visibility="<%# IsTipCalcVisible %>">
-        <form method="post"> Tip Calculator</form>
-    </div>
-
-    break;
-
-    case 4:
-    <div id="SplitCalc" runat="server" visibility="<%# IsSplitCalcVisible %>">
-        <form method="post"> Group Bill Split Calculator</form>
-    </div>
-
-    break;
-    default:
-
-    break
-
-    }
+            </div>
+            <div class="col-sm-offset-2 col-sm-8">
+                <button type="submit" value="Submit" class="btn btn-primary">Submit</button>
+            </div>
+            <div> @Model.Fahrenheit degrees Fahrenheit is @Model.celsius in Celsuis.</div>
+        </form>
+        } while (Model.IsDegreeCalcVisible == true);
 
 
-    }*@
+        break;
+
+    case 2:
+
+    <div id="TaxCalc" runat="server" visibility="<%# IsTaxCalcVisible %>"/>
+        <form method="post"> Tax Calculator</form>
+
+        <div class="col-sm-8">
+            <select name="FormSelection" class="form-control">
+                <option value="">Select Calculator</option>
+                <option value="Degrees">Temperature Conversion</option>
+                <option value="Tax">Sales Tax</option>
+                <option value="Tip">Tip</option>
+                <option value="BillSplit">Group Bill Split</option>
+            </select>
+        </div>
+        break;
+
+        case 3:
+        <div id="TipCalc" runat="server" visibility="<%# IsTipCalcVisible %>">
+            <form method="post"> Tip Calculator</form>
+        </div>
+
+        break;
+
+        case 4:
+        <div id="SplitCalc" runat="server" visibility="<%# IsSplitCalcVisible %>">
+            <form method="post"> Group Bill Split Calculator</form>
+        </div>
+
+        break;
+        default:
+
+        break
+
+        }
+
+
+        }*@

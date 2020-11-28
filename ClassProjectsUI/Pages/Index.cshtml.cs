@@ -48,7 +48,7 @@ namespace ClassProjectsUI.Pages
                     var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
                     valid = true;
-                    return RedirectToPage("/admin/Vacation_Budget_Planner");
+                    return RedirectToPage("/admin/Home");
                 }
                 else
                 {
