@@ -43,13 +43,18 @@
 
                     <label for="TripLength" class="control-label col-sm-4">Trip Length(Days)</label>
                     <div class="col-md-12">
-                        <input type="text" asp-for="TripLength" class="form-control" />
+                        <input type="number" asp-for="TripLength" class="form-control" />
                     </div>
 
                     <label for="SpendingMoney" class="control-label col-sm-4">Amount of Money</label>
-                    <div class="col-md-12">
+                    <div class="col-md-12 input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">$</span>
+                        </div>
                         <input type="text" asp-for="SpendingMoney" class="form-control" />
-
+                        <div class="input-group-append">
+                            <span class="input-group-text">.00</span>
+                        </div>
                     </div>
                 </div>
             </div>

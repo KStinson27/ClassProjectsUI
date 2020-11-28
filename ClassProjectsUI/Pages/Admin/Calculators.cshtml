@@ -34,8 +34,8 @@
 </div>
 
 <div id="results">
-    Value: @Model.Message
-
+    <label for="Message">Output</label>
+    <input readonly type="text" id="resultsDisplay" placeholder="@Model.Message" />
 </div>
 
 @*Modals*@
@@ -53,13 +53,17 @@
             <div class="modal-body">
                 <div class=" ">
                     <form method="post" asp-page-handler="temp" id="temp" class="calcForm">
-                        <div class="col-sm-12">
-                            <div class="col-sm-12">
-                                <label for="TemperatureFahrenheit" class="control-label col-sm-4">Temperature(Fahrenheit)</label>
-                                <input type="text" asp-for="TemperatureFahrenheit" class="form-control" />
+
+
+                        <label for="TemperatureFahrenheit" class="control-label col-sm-4">Temperature</label>
+                        <div class="col-sm-12 input-group">
+                            <input type="text" asp-for="TemperatureFahrenheit" class="form-control" />
+                            <div class="input-group-append">
+                                <span class="input-group-text">°F</span>
                             </div>
                         </div>
-                        <div class="col-md-12">
+
+                        <div class="col-md-12 calcButton">
 
                             <button type="submit" id="submit" value="Submit" class="btn btn-primary btn-block" data-toggle="modal">Calculate</button>
                         </div>
@@ -89,43 +93,47 @@
             <div class="modal-body">
                 <div class=" ">
                     <form method="post" asp-page-handler="tax" id="tax" class="calcForm">
-                        <div class="col-sm-12">
-                            <div class="col-sm-12">
-                                <label for="ProductPrice" class="control-label col-sm-4">Product Price</label>
-                                <input type="text" asp-for="ProductPrice" class="form-control" />
-                                <small id="" class="form-text text-muted">
-                                    Price of the item
-                                </small>
+
+
+                        <label for="ProductPrice" class="control-label col-sm-4">Product Price</label>
+                        <div class="col-sm-12 input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">$</span>
                             </div>
-                            <div class="col-sm-12">
-                                <label for="StateTax" class="control-label col-sm-4">State Tax (%)</label>
-                                <input type="text" asp-for="StateTax" class="form-control" />
-                                <small id="" class="form-text text-muted">
-                                   Do not enter the % symbol
-                                </small>
-                            </div>
-                            <div class="col-sm-12">
-                                <label for="SalesTax" class="control-label col-sm-4">Sales Tax(%)</label>
-                                <input type="text" asp-for="SalesTax" class="form-control" />
-                                <small id="" class="form-text text-muted">
-                                    Do not enter the % symbol
-                                </small>
-                            </div>
+                            <input type="text" asp-for="ProductPrice" class="form-control" />
 
                         </div>
-                        <div class="col-md-12">
 
-                            <button type="submit" id="submit" value="Submit" class="btn btn-primary btn-block" data-toggle="modal">Calculate</button>
+                        <label for="StateTax" class="control-label col-sm-4">State Tax</label>
+                        <div class="col-sm-12 input-group">
+                            <input type="text" asp-for="StateTax" class="form-control" />
+                            <div class="input-group-append">
+                                <span class="input-group-text">%</span>
+                            </div>
                         </div>
-                    </form>
 
+                        <label for="SalesTax" class="control-label col-sm-4">Sales Tax</label>
+                        <div class="col-sm-12 input-group">
+                            <input type="text" asp-for="SalesTax" class="form-control" />
+                            <div class="input-group-append">
+                                <span class="input-group-text">%</span>
+                            </div>
+                        </div>
+
+               
+                <div class="col-md-12 calcButton">
+
+                    <button type="submit" id="submit" value="Submit" class="btn btn-primary btn-block" data-toggle="modal">Calculate</button>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 
@@ -143,21 +151,26 @@
                 <div class=" ">
                     <form method="post" asp-page-handler="tip" id="tip" class="calcForm">
                         <div class="col-sm-12">
-                            <div class="col-sm-12">
-                                <label for="TipAmount" class="control-label col-sm-4">Tip Amount</label>
+
+                            <label for="TipAmount" class="control-label col-sm-4">Tip Amount</label>
+                            <div class="col-sm-12 input-group">
                                 <input type="text" asp-for="TipAmount" class="form-control" />
-                                <small id="" class="form-text text-muted">
-                                    What percentage would you like to leave as a tip?
-                                </small>
+                                <div class="input-group-append">
+                                    <span class="input-group-text">%</span>
+                                </div>
                             </div>
-                            <div class="col-sm-12">
-                                <label for="BillTotal" class="control-label col-sm-4">Bill Total</label>
+
+                            <label for="BillTotal" class="control-label col-sm-4">Bill Total</label>
+                            <div class="col-sm-12 input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">$</span>
+                                </div>
                                 <input type="text" asp-for="BillTotal" class="form-control" />
-                                
+
                             </div>
 
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-12 calcButton">
 
                             <button type="submit" id="submit" value="Submit" class="btn btn-primary btn-block" data-toggle="modal">Calculate</button>
                         </div>
@@ -187,8 +200,12 @@
                 <div class=" ">
                     <form method="post" asp-page-handler="split" id="split" class="calcForm">
                         <div class="col-sm-12">
-                            <div class="col-sm-12">
-                                <label for="GroupBillTotal" class="control-label col-sm-4">Bill Total</label>
+
+                            <label for="GroupBillTotal" class="control-label col-sm-4">Bill Total</label>
+                            <div class="col-sm-12 input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">$</span>
+                                </div>
                                 <input type="text" asp-for="GroupBillTotal" class="form-control" />
                             </div>
                             <div class="col-sm-12">
@@ -200,7 +217,7 @@
                             </div>
 
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-12 calcButton">
 
                             <button type="submit" id="submit" value="Submit" class="btn btn-primary btn-block" data-toggle="modal">Calculate</button>
                         </div>
@@ -217,83 +234,3 @@
 </div>
 
 
-@*{
-    <form method="get"?>
-        <label class="control-label col-sm-3">Calculators</label>
-        <div class="col-sm-8">
-            <select asp-for="Selection" asp-items="Model.Calculators">
-                <option value=""> Select a Calculator</option>
-            </select>
-        </div>
-
-        <div class="col-sm-offset-2 col-sm-8">
-            <button type="submit" value="Submit" class="btn btn-primary" asp-page-handler="RequestInfo">Submit</button>
-        </div>
-    </form>
-
-        }
-    @{
-
-        switch (Model.Selection)
-        {
-            case 1:
-                do
-                {
-        <form method="post">
-            <div id="DegreeCalc" runat="server" visibility="<%# IsDegreeCalcVisible %>">
-
-                <label for="DegreeCalc" class="control-label col-sm-3">Degree Conversion</label>
-
-                <label for="Fahrenheit" class="control-label col-sm-3">Enter a temperature(Farenheit)</label>
-                <div class="col-sm-8">
-                    <input type="text" asp-for="Fahrenheit" class="form-control" />
-                </div>
-
-            </div>
-            <div class="col-sm-offset-2 col-sm-8">
-                <button type="submit" value="Submit" class="btn btn-primary">Submit</button>
-            </div>
-            <div> @Model.Fahrenheit degrees Fahrenheit is @Model.celsius in Celsuis.</div>
-        </form>
-        } while (Model.IsDegreeCalcVisible == true);
-
-
-        break;
-
-    case 2:
-
-    <div id="TaxCalc" runat="server" visibility="<%# IsTaxCalcVisible %>"/>
-        <form method="post"> Tax Calculator</form>
-
-        <div class="col-sm-8">
-            <select name="FormSelection" class="form-control">
-                <option value="">Select Calculator</option>
-                <option value="Degrees">Temperature Conversion</option>
-                <option value="Tax">Sales Tax</option>
-                <option value="Tip">Tip</option>
-                <option value="BillSplit">Group Bill Split</option>
-            </select>
-        </div>
-        break;
-
-        case 3:
-        <div id="TipCalc" runat="server" visibility="<%# IsTipCalcVisible %>">
-            <form method="post"> Tip Calculator</form>
-        </div>
-
-        break;
-
-        case 4:
-        <div id="SplitCalc" runat="server" visibility="<%# IsSplitCalcVisible %>">
-            <form method="post"> Group Bill Split Calculator</form>
-        </div>
-
-        break;
-        default:
-
-        break
-
-        }
-
-
-        }*@

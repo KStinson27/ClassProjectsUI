@@ -55,7 +55,7 @@ namespace ClassProjectsUI.Pages.Admin
             selection = "temp";
             temperatureCelsius = (TemperatureFahrenheit - 32) * 5 / 9;
 
-            Message = temperatureCelsius.ToString() + " degrees Celsius";
+            Message = temperatureCelsius.ToString() + "° Celsius";
         }
 
         public void OnPostTax()
