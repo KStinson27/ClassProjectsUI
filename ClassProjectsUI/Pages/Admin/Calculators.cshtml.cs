@@ -12,96 +12,84 @@ namespace ClassProjectsUI.Pages.Admin
     [Authorize]
     public class CalculatorsModel : PageModel
     {
+        [BindProperty]
+        public decimal ProductPrice { get; set; }
+        [BindProperty]
+        public decimal StateTax { get; set; }
+        [BindProperty]
+        public decimal SalesTax { get; set; }
 
-        public string Message = "Coming Soon";
-        //Variables
+        [BindProperty]
+        public string Selection { get; set; }
 
-        /*        [BindProperty]
-                public double Fahrenheit { get; set; }
+        public decimal total;
+        public decimal stateTaxConversion;
 
-                public double celsius;
+        [BindProperty]
+        public double TemperatureFahrenheit { get; set; }
+        public double temperatureCelsius;
 
-                public bool IsDegreeCalcVisible;
-                public bool IsTaxCalcVisible;
-                public bool IsTipCalcVisible;
-                public bool IsSplitCalcVisible;
+        [BindProperty]
+        public decimal TipAmount { get; set; }
 
-                [BindProperty]
-                public int Selection {get; set;}
+        [BindProperty]
+        public decimal BillTotal { get; set; }
 
-                public List<SelectListItem> Calculators { get; set; }
+        public decimal tipOwed;
 
+        public decimal tipPercentage;
 
-                public void OnGet()
-                {
-                    Calculators = new List<SelectListItem>
-                    {
-                        new SelectListItem {Value = "1", Text="Degree Conversion"},
-                        new SelectListItem {Value = "2", Text="Tax Calculator"},
-                        new SelectListItem {Value = "3", Text="Tip Calculator"},
-                        new SelectListItem {Value = "4", Text="Split Bill Calculator"}
-                    };*/
+        [BindProperty]
+        public decimal GroupBillTotal { get; set; }
+        [BindProperty]
+        public decimal Contributors { get; set; }
 
-        //Commenting out for now. Question: How do I get fields to populate based on Selected ListItem
-        /* switch (FormSelection)
-         {
-             case "DegreeCalc":
-                 IsDegreeCalcVisible = true;
-                 break;
+        public decimal individualContributorTotal;
 
-             case "Tax":
-                 IsTaxCalcVisible = true;
-                 IsDegreeCalcVisible = false;
-                 break;
-
-             case "Tip":
-
-                 IsTipCalcVisible = true;
-                 IsDegreeCalcVisible = false;
-                 break;
-
-             case "BillSplit":
-                 IsSplitCalcVisible = true;
-                 IsDegreeCalcVisible = false;
-                 break;
-
-             default:
-                 IsDegreeCalcVisible = false;
-                 IsTaxCalcVisible = false;
-                 IsTipCalcVisible = false;
-                 IsSplitCalcVisible = false;
-                 break;
-         }
+        public string selection;
+        public string Message;
 
 
+        public void OnPostTemp()
+        {
+            selection = "temp";
+            temperatureCelsius = (TemperatureFahrenheit - 32) * 5 / 9;
 
-         //return FormSelection;
-     }*/
+            Message = temperatureCelsius.ToString() + " degrees Celsius";
+        }
 
-        /*  public void OnPost()
-          {
-              if (Selection == 1)
-              {
-                  IsDegreeCalcVisible = true;
-              }
-              switch (Selection)
-              {
-                  case 1:
-                      //temperatureFahrenheit = Int32.Parse(Console.ReadLine());
-                      while (IsDegreeCalcVisible == true)
-                          celsius = (Fahrenheit - 32) * 5 / 9;
+        public void OnPostTax()
+        {
+            selection = "tax";
 
-                      break;
+            stateTaxConversion = StateTax / 100;
+            SalesTax = (stateTaxConversion * ProductPrice);
 
-                  default:
-                      break;
-              }*/
+            total = SalesTax + ProductPrice;
 
+            Message = "Your total is: $" + Decimal.Round(total);
 
+        }
 
+        public void OnPostTip()
+        {
+            selection = "tip";
+            tipPercentage = TipAmount / 100;
 
+            tipOwed = BillTotal * tipPercentage;
 
+            Message = "You would owe $" + Decimal.Round(tipOwed) + " as a tip";
+        }
+
+        public void OnPostSplit()
+        {
+            selection = "split";
+
+            individualContributorTotal = GroupBillTotal / Contributors;
+
+            Message = "Each person needs to pay $" + Decimal.Round(individualContributorTotal);
+
+        }
     }
+
 }
-
-

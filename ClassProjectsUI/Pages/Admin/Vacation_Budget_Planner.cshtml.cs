@@ -31,7 +31,6 @@ namespace ClassProjectsUI.Pages.Admin
 
         public string money;
         public double perDiem;
-        
         public decimal euroRate = OnGet(1);
         public decimal colRate = OnGet(2);
         public string perDiemConversion;

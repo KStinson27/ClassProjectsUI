@@ -73,6 +73,14 @@ a{
     border: none !important
 }
 
+.calcs {
+    background-image: linear-gradient(180deg, #C85782 0%, #F2C3A1 100%) !important;
+}
+
+#results{
+    border: 1px solid black !important;
+    margin:100px;
+}
 .card-text{
     font-size:18px;
 }

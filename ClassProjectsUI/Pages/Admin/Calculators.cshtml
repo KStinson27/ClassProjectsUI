@@ -3,10 +3,219 @@
 
 @section Styles{
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/Home.css" />
 
 }
 
-@Model.Message
+
+<div class="secondBox">
+
+    <div class="card text-center calcs">
+        <div class="">
+            <a href="#tempModal" class="card-text" data-toggle="modal">Temperature Conversion Calculator</a>
+        </div>
+    </div>
+    <div class="card text-center calcs">
+        <div class="">
+            <a href="#taxModal" class="card-text" data-toggle="modal">Sales Tax Calculator</a>
+        </div>
+    </div>
+    <div class="card text-center calcs">
+        <div class="">
+            <a href="#tipModal" class="card-text" data-toggle="modal">Tip Calculator</a>
+        </div>
+    </div>
+    <div class="card text-center calcs">
+        <div class="">
+            <a href="#splitModal" value="split" class="card-text" data-toggle="modal">Group Bill Split Calculator</a>
+        </div>
+    </div>
+
+</div>
+
+<div id="results">
+    Value: @Model.Message
+
+</div>
+
+@*Modals*@
+
+@*Temperature*@
+<div id="tempModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Temperature Conversion Calculator</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class=" ">
+                    <form method="post" asp-page-handler="temp" id="temp" class="calcForm">
+                        <div class="col-sm-12">
+                            <div class="col-sm-12">
+                                <label for="TemperatureFahrenheit" class="control-label col-sm-4">Temperature(Fahrenheit)</label>
+                                <input type="text" asp-for="TemperatureFahrenheit" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+
+                            <button type="submit" id="submit" value="Submit" class="btn btn-primary btn-block" data-toggle="modal">Calculate</button>
+                        </div>
+                    </form>
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Tax*@
+<div id="taxModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Sales Tax Calculator</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class=" ">
+                    <form method="post" asp-page-handler="tax" id="tax" class="calcForm">
+                        <div class="col-sm-12">
+                            <div class="col-sm-12">
+                                <label for="ProductPrice" class="control-label col-sm-4">Product Price</label>
+                                <input type="text" asp-for="ProductPrice" class="form-control" />
+                                <small id="" class="form-text text-muted">
+                                    Price of the item
+                                </small>
+                            </div>
+                            <div class="col-sm-12">
+                                <label for="StateTax" class="control-label col-sm-4">State Tax (%)</label>
+                                <input type="text" asp-for="StateTax" class="form-control" />
+                                <small id="" class="form-text text-muted">
+                                   Do not enter the % symbol
+                                </small>
+                            </div>
+                            <div class="col-sm-12">
+                                <label for="SalesTax" class="control-label col-sm-4">Sales Tax(%)</label>
+                                <input type="text" asp-for="SalesTax" class="form-control" />
+                                <small id="" class="form-text text-muted">
+                                    Do not enter the % symbol
+                                </small>
+                            </div>
+
+                        </div>
+                        <div class="col-md-12">
+
+                            <button type="submit" id="submit" value="Submit" class="btn btn-primary btn-block" data-toggle="modal">Calculate</button>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*Tip*@
+<div id="tipModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Tip Calculator</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class=" ">
+                    <form method="post" asp-page-handler="tip" id="tip" class="calcForm">
+                        <div class="col-sm-12">
+                            <div class="col-sm-12">
+                                <label for="TipAmount" class="control-label col-sm-4">Tip Amount</label>
+                                <input type="text" asp-for="TipAmount" class="form-control" />
+                                <small id="" class="form-text text-muted">
+                                    What percentage would you like to leave as a tip?
+                                </small>
+                            </div>
+                            <div class="col-sm-12">
+                                <label for="BillTotal" class="control-label col-sm-4">Bill Total</label>
+                                <input type="text" asp-for="BillTotal" class="form-control" />
+                                
+                            </div>
+
+                        </div>
+                        <div class="col-md-12">
+
+                            <button type="submit" id="submit" value="Submit" class="btn btn-primary btn-block" data-toggle="modal">Calculate</button>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*Bill Split*@
+<div id="splitModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Bill Split Calculator</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class=" ">
+                    <form method="post" asp-page-handler="split" id="split" class="calcForm">
+                        <div class="col-sm-12">
+                            <div class="col-sm-12">
+                                <label for="GroupBillTotal" class="control-label col-sm-4">Bill Total</label>
+                                <input type="text" asp-for="GroupBillTotal" class="form-control" />
+                            </div>
+                            <div class="col-sm-12">
+                                <label for="Contributors" class="control-label col-sm-4"># of Contributors</label>
+                                <input type="text" asp-for="Contributors" class="form-control" />
+                                <small id="" class="form-text text-muted">
+                                    How many people are you splitting with?
+                                </small>
+                            </div>
+
+                        </div>
+                        <div class="col-md-12">
+
+                            <button type="submit" id="submit" value="Submit" class="btn btn-primary btn-block" data-toggle="modal">Calculate</button>
+                        </div>
+                    </form>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 @*{
     <form method="get"?>
